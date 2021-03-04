@@ -1,0 +1,60 @@
+<div class="jumbotron">
+    <ui-accordions>
+        <ui-accordion title="Accordion 1">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </ui-accordion>     
+        
+        <ui-accordion title="Accordion 2">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </ui-accordion> 
+
+        <ui-accordion title="Accordion 3">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip 
+            ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse 
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, 
+            sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </ui-accordion> 
+    </ui-accordions>
+    
+    <hr>   
+    
+    <input type=text class="form-control" ng-model="criterioDeBusca" placeholder="O que você está buscando?">
+    <br>
+
+    <table ng-show="contatos.length > 0" class="table">
+        <tr>
+            <th></th>
+            <th><a href="" ng-click="ordenarPor('nome')">Nome</a></th>
+            <th><a href="" ng-click="ordenarPor('telefone')">Telefone</a></th>
+            <th><a href="" ng-click="ordenarPor('operadora.nome')">Operadora</a></th>
+            <th>Data</th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="contato in contatos | filter:{'operadora':{'nome':criterioDeBusca} } | orderBy:criterioDeOrdenacao:direcaoDaOrdenacao" ng-class="{'{{classe1}} {{classe2}}': contato.selecionado}">
+            <td><input type="checkbox" class="" ng-model="contato.selecionado"/></td>
+            <td>{{contato.nome | name}}</td>
+            <td>{{contato.telefone}}</td>
+            <td>{{contato.operadora.nome}}</td>
+            <td>{{contato.data | date:"dd/MM/yyyy"}}</td>
+            <td><div style="width: 20px; height: 20px;" ng-style="{'background-color': contato.cor}"></div></td>
+        </tr>
+    </table>
+    <hr>             
+    
+    <button class="btn btn-danger" ng-click="apagarContatos()" ng-if="isContatoSelecionado()">Apagar Contatos</button>
+         
+    <a class="btn btn-primary" href="#/adicionarContato">Adicionar Contato</a>
+   
+</div>
